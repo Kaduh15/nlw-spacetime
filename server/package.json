@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsup src",
+    "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts",
     "lint": "eslint src --ext .ts --fix"
   },
@@ -13,12 +15,14 @@
   "devDependencies": {
     "@types/node": "^20.2.1",
     "prisma": "^4.14.1",
+    "tsup": "^6.7.0",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   },
   "dependencies": {
     "@fastify/cors": "^8.2.1",
     "@prisma/client": "^4.14.1",
+    "dotenv": "^16.0.3",
     "fastify": "^4.17.0",
     "zod": "^3.21.4"
   }
