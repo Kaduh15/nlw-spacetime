@@ -5,8 +5,7 @@ import { authRoutes, memoriesRotes } from './routes'
 
 import 'dotenv/config'
 
-const PORT = Number(process.env.PORT) || 3333
-console.log('🚀 ~ file: server.ts:9 ~ process.env.PORT:', process.env.PORT)
+const PORT = Number(process.env.PORT)
 
 const app = fastify()
 
@@ -25,5 +24,5 @@ app
     port: PORT,
   })
   .then(() => {
-    console.log('listening on port 3333')
+    console.log(`listening on port ${PORT}`)
   })
