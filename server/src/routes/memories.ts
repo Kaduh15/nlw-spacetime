@@ -3,8 +3,13 @@ import { z } from 'zod'
 import { prisma } from '../lib/prisma'
 
 export const memoriesRotes = async (app: FastifyInstance) => {
-  app.get('/memories', async () => {
+  app.get('/memories', async (req) => {
+    await req.jwtVerify()
+
     const memories = await prisma.memory.findMany({
+      where: {
+        userId: req.user.sub,
+      },
       orderBy: {
         createdAt: 'asc',
       },
@@ -17,7 +22,7 @@ export const memoriesRotes = async (app: FastifyInstance) => {
     }))
   })
 
-  app.get('/memories/:id', async (req, res) => {
+  app.get('/memories/:id', async (req) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
@@ -33,7 +38,7 @@ export const memoriesRotes = async (app: FastifyInstance) => {
     return memory
   })
 
-  app.post('/memories', async (req, res) => {
+  app.post('/memories', async (req) => {
     const bodySchema = z.object({
       content: z.string(),
       coverUrl: z.string(),
@@ -54,7 +59,7 @@ export const memoriesRotes = async (app: FastifyInstance) => {
     return memory
   })
 
-  app.put('/memories/:id', async (req, res) => {
+  app.put('/memories/:id', async (req) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
@@ -84,7 +89,7 @@ export const memoriesRotes = async (app: FastifyInstance) => {
     return memory
   })
 
-  app.delete('/memories/:id', async (req, res) => {
+  app.delete('/memories/:id', async (req) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })

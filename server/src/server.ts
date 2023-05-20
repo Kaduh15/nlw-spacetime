@@ -6,6 +6,7 @@ import { authRoutes, memoriesRotes } from './routes'
 import 'dotenv/config'
 
 const PORT = Number(process.env.PORT) || 3333
+console.log('🚀 ~ file: server.ts:9 ~ process.env.PORT:', process.env.PORT)
 
 const app = fastify()
 
