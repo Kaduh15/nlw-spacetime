@@ -1,6 +1,6 @@
 import fastify from 'fastify'
 import cors from '@fastify/cors'
-import { memoriesRotes } from './routes'
+import { authRoutes, memoriesRotes } from './routes'
 
 import 'dotenv/config'
 
@@ -13,6 +13,7 @@ app.register(cors, {
 })
 
 app.register(memoriesRotes)
+app.register(authRoutes)
 
 app
   .listen({
